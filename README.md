@@ -46,4 +46,5 @@ NorthStar 和 NorthStarCN 都属于早期项目，仍有许多地方需要完善
 - AIALRA
 - panduola
 - HK560 
+- bilibili-XGY4N
 - ....
