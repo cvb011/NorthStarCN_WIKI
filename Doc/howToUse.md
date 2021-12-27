@@ -1,7 +1,7 @@
 <!--
  * @Author: HK560
  * @Date: 2021-12-25 11:03:31
- * @LastEditTime: 2021-12-26 21:39:29
+ * @LastEditTime: 2021-12-27 19:58:35
  * @LastEditors: HK560
  * @Description: TTF2NorthStar使用翻译
  * @FilePath: \NorthStarCN_WIKI\Doc\howToUse.md
@@ -10,11 +10,12 @@
 
 ## 基础使用步骤
 1. 下载NorthStarCN最新版本文件,你可以在[这里下载](https://github.com/R2NorthstarCN/R2NorthstarCN_Launcher/releases)
-2. 复制所有解压后的文件到游戏的根目录中 (目前仅支持origin客户端)
+2. 复制所有解压后的文件到游戏的根目录中 (目前steam和ea desktop启动的游戏可能存在些问题)
    - Steam – 打开 Steam>找到 Titanfall 2，将鼠标移动到游戏名称上，同时鼠标右键单击>在弹出的菜单中选择管理，再点击浏览本地文件。
    - Origin – 找到你的游戏安装目录（Titanfall2.exe在的地方）
 3.	(可选) 如果想添加启动项，请新建文件名为 ns_startup_args.txt 的文本文件并在文本中添加相关参数
-4.	点击 NorthstarLauncher.exe 运行启动
+5. 确保已启动登陆origin，steam版也同样需要先启动origin登陆
+6.	点击 NorthstarLauncher.exe 运行启动
 
 在加载成功打开游戏后，在游戏主界面你将会看到一条警告信息。提醒您使用NorthStar将自动发送由Origin账号信息生成的Token至NorthStar的MasterServers进行身份验证并用于多人游玩服务.请仔细阅读信息！
 ![info](https://cdn.jsdelivr.net/gh/HK560/MyPicHub@master/res/pic/Snipaste_2021-12-25_18-47-43.jpg)

@@ -1,11 +1,10 @@
 <!--
  * @Author: HK560
  * @Date: 2021-12-27 18:29:16
- * @LastEditTime: 2021-12-27 19:20:14
+ * @LastEditTime: 2021-12-27 19:28:01
  * @LastEditors: HK560
  * @Description: 
  * @FilePath: \NorthStarCN_WIKI\Doc\howToPackMod.md
- * My Blog: https://blog.hk560.top
 -->
 # 创造你的第一个mod
 
@@ -69,6 +68,7 @@ See [Cheatsheet]() for a more comprehensive list
 
 ### 添加定制 Scripts
 任意你新创建的 .nut/.gunt 文件必须在在你的mod.json文件中的`"Scripts"`项定义
+举个例子:
 
 <!-- Any new .nut/.gnut you create must be defined in the `"Scripts"` section of your mod file -->
 ```json
