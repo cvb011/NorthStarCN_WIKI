@@ -1,9 +1,9 @@
 <!--
  * @Author: HK560
  * @Date: 2021-12-27 18:29:16
- * @LastEditTime: 2021-12-27 19:28:01
+ * @LastEditTime: 2021-12-28 23:44:24
  * @LastEditors: HK560
- * @Description: 
+ * @Description:
  * @FilePath: \NorthStarCN_WIKI\Doc\howToPackMod.md
 -->
 # 创造你的第一个mod
@@ -55,7 +55,7 @@ Mods可以通过读取优先级(priority)来覆写其他mods。优先级`0`为�
   - `"ConVars"`: Source ConVars the mod defines which can have flags (see [ConVars]())
   - `"Scripts"`: Custom squirrel scripts the mod loads (see [Scripts]())
   - `"Localisation"`: mod文件的位置
-  
+
 <!-- A quick summary of all the features shown:
   - `"Name"`: Name of the mod shown when loaded in console and in UI
   - `"Description"`: Quick description of the mod
