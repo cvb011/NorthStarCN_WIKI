@@ -1,14 +1,22 @@
 <!--
  * @Author: HK560
  * @Date: 2021-12-31 16:00:49
- * @LastEditTime: 2021-12-31 16:47:13
+ * @LastEditTime: 2022-01-02 12:03:33
  * @LastEditors: HK560
  * @Description:
  * @FilePath: \NorthStarCN_WIKI\Doc\cliForServer.md
 -->
 # 服務端命令
-+setplaylistvaroverrides "max_players 32" -maxplayersplaylist
+- +setplaylistvaroverrides "max_players 32" -maxplayersplaylist
 
+- setplaylistvaroverrides "max_players 28 timelimit 20 scorelimit 750"
+
+- +setplaylist private_match +setplaylist ps 
+- +mp_gamemode ps 
+- +map mp_lf_stacks 
+- +setplaylistvaroverrides "scorelimit 750" 
+- +setplaylistvaroverrides "timelimit 20" 
+- +setplaylistvaroverrides "max_players 28" -maxplayersplaylist 
 # gift
 Gift Mod
 --
