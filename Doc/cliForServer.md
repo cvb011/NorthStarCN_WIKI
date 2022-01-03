@@ -1,16 +1,17 @@
 <!--
  * @Author: HK560
  * @Date: 2021-12-31 16:00:49
- * @LastEditTime: 2022-01-02 12:03:33
+ * @LastEditTime: 2022-01-03 17:25:57
  * @LastEditors: HK560
  * @Description:
  * @FilePath: \NorthStarCN_WIKI\Doc\cliForServer.md
 -->
 # 服務端命令
+以下皆为示例
 - +setplaylistvaroverrides "max_players 32" -maxplayersplaylist
-
 - setplaylistvaroverrides "max_players 28 timelimit 20 scorelimit 750"
-
+- SetPlaylistVarOverride( "custom_air_accel_pilot", "9000" ) 空速 写在.nut
+- +sv_airaccelerate 5000
 - +setplaylist private_match +setplaylist ps 
 - +mp_gamemode ps 
 - +map mp_lf_stacks 
@@ -74,3 +75,20 @@ Want to bully anyone who joins your server? Look no further with this mod! Now y
 - uv/unvanish someone/IMC/militia/all
 
 so, yeah. enjoy your players malding probably
+
+
+### config
+- net_chan_limit_mode 2 // kick clients that go over the limit
+- net_chan_limit_msec_per_sec 100 // number of milliseconds of server netchan processing time clients can use per second before getting kicked
+- sv_querylimit_per_sec 10 // number of connectionless packets clients can send to this server per second without getting blocked
+- base_tickinterval_mp 0.016666667 // default tickrate: 60 tick
+- sv_updaterate_mp 60 // default updaterate: 20 tick
+- sv_minupdaterate 60 // unsure if this actually works, but if it does, should set minimum client updaterate
+- sv_max_snapshots_multiplayer 1200 // this needs to be updaterate * 15, or clients will dc in killreplay
+- net_data_block_enabled 0 // not really sure on this, have heard datablock could have security issues? doesn't seem to have any adverse effects being disabled
+- host_skip_client_dll_crc  1 // allow people to run modded client dlls, this is mainly so people running pilot visor colour mods can keep those, since they use a client.dll edit
+- net_maxfilesize 64
+- net_maxroutable 2400
+- net_maxfragments 2400
+- sv_usercmd_max_queued 80
+- sv_maxvelocity 150000
