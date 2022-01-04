@@ -28,6 +28,7 @@ NorthStar 和 NorthStarCN 都属于早期项目，仍有许多地方需要完善
 **公开QQ交流群：660908653**
 
 **【推荐】加入我们的[开黑啦频道](https://kaihei.co/dzQJoM)及时获取消息通知更新**
+
 如果你想要下载NorthStarCN客户端请点击[这里](https://github.com/R2NorthstarCN/R2NorthstarCN_Launcher/releases)
 
 如果你想要查看NorthStar原版仓库请点击[这里](https://github.com/R2Northstar/Northstar)
