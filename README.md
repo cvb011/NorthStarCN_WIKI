@@ -23,7 +23,7 @@ NorthStar 和 NorthStarCN 都属于早期项目，仍有许多地方需要完善
 ----
 # 查看我们的[Wiki](https://github.com/R2NorthstarCN/NorthStarCN_WIKI/wiki)以获得相关帮助信息
 ## 查看[快速帮助文档](https://github.com/R2NorthstarCN/NorthStarCN_WIKI/wiki/%E5%BF%AB%E9%80%9F%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3)以快速配置使用NorthStarCN
-##【强烈建议】加入我们的[开黑啦频道](https://kaihei.co/dzQJoM)及时获取消息通知更新
+## 【强烈建议】加入我们的[开黑啦频道](https://kaihei.co/dzQJoM)及时获取消息通知更新
 # 其他
 ~~公开QQ交流群：660908653~~
 
