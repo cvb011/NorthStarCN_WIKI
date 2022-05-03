@@ -1,55 +1,35 @@
-# Hosting a Basic Listen Server
+# 搭建一个基本监听服务器
 
-## Instructions
+## 简介
 
-To host a listen server on Northstar, go to the lobby and press the `Private Match` button to begin a private match. While this does allow you to host a server, other people won't be able to join it, so you'll need to port forward 2 ports to allow other people to join.\
-The ports you'll need to forward are `37015` UDP, and `8081` TCP by default, if this works as it should, this should result in your server being displayed on the server browser, and other clients being able to connect to it.\
+如果您想搭建一个 Northstar 的机本监听服务器的话, 再大厅点击 `私人比赛` 按钮来创建一个大厅服务器. 尽管这允许您创建一个服务器, 其他人可能无法加入您的比赛, 因此您应在路由器或网关交换机中转发以下端口至公网以允许其他人加入.\
+注意：Frp 与 Nps 等端口映射软件 **不等同于端口转发且无法正常工作**\
+在默认设置下，您需要转发的端口为 `37015` UDP 与 `8081` TCP , 如果您正常设置了端口转发，那么此时您的服务器会显示在大厅的服务器列表中, 并且他人应该可以正常加入您的游戏了.\
 ![screenshot select private match](https://raw.githubusercontent.com/R2Northstar/NorthstarWiki/main/docs/images/lobbyprivatematch.png)
 
-## Server Configuration
+## 服务器配置
 
-Whether you're running a listen or dedicated server, you'll generally want to mess with the configuration at least a bit. While I do think the default configuration settings are pretty ok, being able to change your server's name or password, or increasing your server's tickrate is often something you'll want to do. Server configuration can be modified in the file `R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg`, which will be executed on server startup.\
+无论您搭建的是基本监听服务器又或者是专有服务器，您应该都会想自己调点什么参数. 虽然默认的参数是万金油参数, 但更改服务器的名称啊，密码啊，tickrate啊什么的还是需要您亲自动手. 您可以在 `R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg` 中更改服务器设置, 更改的参数会在服务器启动时自动加载.\
+总而言之，专有服务器的设置与基本监听服务器的参数设置方法没有什么不同.\
+服务器启动参数位于 `Titanfall2/ns_startup_args.txt`\
+Convars 位于 `R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg`
+基本监听服务器与专有服务器的唯一区别为基本服务器需要房主一直在房间中. 
 
-Additionally dedicated server settings and configs can be used on a listen server.\
-Server startup arguments can be placed into `Titanfall2/ns_startup_args.txt`\
-Convars can be placed into `R2Northstar/mods/Northstar.CustomServers/mod/cfg/autoexec_ns_server.cfg`
-The only difference between a listen and dedicated server is that a listen can only run while the host is in the match. 
+相关设置请参考 [专有服务器章节](dedicated-server/Readme.md#convars)
 
-Below are a series of variables and commands you can use for server configuration:
+## 一些小技巧:
 
-| Name                                   | Description                                                                                                                                                                                 | Default Value                  |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| `ns_server_name`                       | Your server's name on the server browser                                                                                                                                                    | `"Unnamed Northstar Server"`   |
-| `ns_server_desc`                       | Your server's description on the server browser                                                                                                                                             | `"Default server description"` |
-| `ns_server_password`                   | The password required to join your server, can be bypassed if clients directly connect and you are using insecure auth                                                                      | `""`                           |
-| `ns_report_server_to_masterserver`     | Whether your server should report itself to the masterserver, for use in auth and the serverbrowser                                                                                         | `1`                            |
-| `ns_report_sp_server_to_masterserver`  | Whether your server should report itself to the masterserver if started on a singleplayer map, for use in auth and the serverbrowser                                                        | `0`                            |
-| `ns_auth_allow_insecure`               | Allows clients to join your server without authenticating with the masterserver, currently required to allow clients to connect directly to your IP, rather than through the server browser | `0`                            |
-| `ns_erase_auth_info`                   | Whether your server should erase authentication information after it is used, this is useful for development but should normally be kept at 1                                               | `1`                            |
-| `ns_player_auth_port`                  | The port used for the server's local authentication server, this is the TCP port we forwarded earlier                                                                                       | `8081`                         |
-| `everything_unlocked`                  | Whether all items, weapons, etc should be unlocked on the server                                                                                                                            | `1`                            |
-| `ns_should_return_to_lobby`            | Whether the server should return to private match lobby after completing a game, if 0, this will go to the next map/mode in the playlist                                                    | `1`                            |
-| `ns_should_log_unknown_clientcommands` | Whether unknown clientcommands should be printed in the console, worth disabling if they get on your nerves                                                                                 | `1`                            |
-| `net_chan_limit_mode`                  | If 0, don't limit the netchannel processing time individual clients are allowed. If 1, kick clients that go over the limit. If 2, log clients that go over the limit in console             | `2`                            |
-| `net_chan_limit_msec_per_sec`          | The number of milliseconds of server netchan processing time clients can use per second before triggering the response set in net\_chan\_limit\_mode                                        | `30`                           |
-| `base_tickinterval_mp`                 | The delay between each tick ran on the server, your tickrate will be 1 divided by this value                                                                                                | `0.016666667`                  |
-| `sv_updaterate_mp`                     | The maximum number of times per second your server will send information to connected players, if a player's cl\_updaterate\_mp value is lower than this, their rate will be limited to it  | `20`                           |
-| `sv_max_snapshots_multiplayer`         | The number of snapshots stored locally for use in replays, this should be set to sv\_updaterate\_mp \* 15                                                                                   | `300`                          |
-| `host_skip_client_dll_crc`             | Whether the server should allow clients with modified client.dll files to connect, these are used for visor colour edit mods                                                                | `1`                            |
-
-## Tips and tricks:
-
-To change gamemode and map, run:
+您可以在控制台通过以下指令更改地图与模式:
 
 ```
 sv_cheats 1; script GameRules_ChangeMap( "mp_forwardbase_kodai", "ctf" ); sv_cheats 0
 ```
 
-replace `mp_forwardbase_kodai` and `ctf` with your desired map and gamemode.\
-The list of maps can be found [here](dedicated-server/#maps).\
-The list of gamemodes [here](dedicated-server/#gamemodes).
+将 `mp_forwardbase_kodai` 与 `ctf` 替换为您想要的地图与模式.\
+地图列表在 [这里](dedicated-server/README.md#maps).\
+游戏模式列表在 [这里](dedicated-server/README.md#gamemodes).
 
-If someone keeps messing with the settings, set `ns_private_match_only_host_can_change_settings` to `2`, so that only you can change them.
+如果有人一直在乱搞模式与地图等设置的话, 将 `ns_private_match_only_host_can_change_settings` 设置为 `2`, 就只有房主能更改了.
 
-Set `ns_private_match_countdown_length` to `1` if you don't want to wait for the countdown timer when you start a match. \
-Additionally, set `ns_private_match_only_host_can_start` to `1` so that only you can actually press the _start match_ button.
+您可以将 `ns_private_match_countdown_length` 设置为 `1` 用来跳过开始游戏前的倒计时（车门焊死，谁也别想倒计时的时候跑路）. \
+除此之外，您可以将 `ns_private_match_only_host_can_start` 设置为 `1` 就只有你能开始游戏了.

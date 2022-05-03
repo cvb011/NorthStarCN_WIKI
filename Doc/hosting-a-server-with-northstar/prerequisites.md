@@ -1,67 +1,63 @@
-# Prerequisites
+# 准备阶段
 
-**TL;DR:** Port forward `37015` (UDP) and `8081` (TCP)
+**TL;DR:** 需要转发的端口是 `37015` (UDP) 与 `8081` (TCP)
 
-Make sure you already installed Northstar [as described here](../installing-northstar/basic-setup.md).
+确保您已正确安装了 Northstar [as described here（尚未翻译）](../installing-northstar/basic-setup.md).
 
-{% hint style="warning" %}
-Hosting your own server of any kind requires basic knowledge of computer networks!\
-If you for example don't know what "port forwarding" means and just want to play private matches with your friends it is generally recommended to just find an empty public server instead of trying to host your own server.
-{% endhint %}
+## 敬告：
 
-## Check whether you can port forward
+**搭建您自己的服务器需要相当量的网络基础知识!\
+您所需要的知识包括但不限于 **`端口转发` `光猫桥接`** 等. 即使是在云服务器上搭建也相当棘手.\
+在您没有足够知识的前提下，我们建议您游玩由他人提供的服务器**
 
-In order for others to join your game they need to be able to reach you. Most likely your router acts as a NAT so you need to port forward two ports to your PC for [NAT traversal](https://en.wikipedia.org/wiki/NAT\_traversal).
+## 检查您是否有转发对应端口的条件
 
-## CGNAT
+由于其他想要加入您的游戏的人必须能直接连接到您的电脑. 在绝大多数情况下您的路由器是工作在 NAT 模式中的，所以您所需要的步骤是转发对应的端口，具体可以参考 [这篇](https://www.asus.com/support/FAQ/114093/) 来自华硕的文章.
 
-First we want to make sure you're not behind a [CGNAT](https://en.wikipedia.org/wiki/Carrier-grade\_NAT) as this basically means you [won't be able to host at all](https://en.wikipedia.org/wiki/Carrier-grade_NAT#Disadvantages).
+## 运营商级NAT
 
-For this find out your external IP address [by visiting this site](https://www.whatsmyip.org).
+由于我们无法确认您是否在 [运营商级NAT](https://en.wikipedia.org/wiki/Carrier-grade\_NAT) 的高墙后 （即所谓的没有公网IP）， 因为这通常情况下意味着您 [完全无法搭建服务器](https://en.wikipedia.org/wiki/Carrier-grade_NAT#Disadvantages).
 
-Then [open CMD](https://www.lifewire.com/how-to-open-command-prompt-2618089#toc-open-command-prompt-in-windows-10) and type in:
+验证您是否有公网IP的方式十分简单：
 
-```txt
-tracert <your external IP address here>
-```
+ * 在百度搜索 `IP` 以获知您的出口IP
+ * 将此IP与您路由器获取到的IP进行对比
 
-if only your external IP address shows up when the commands exits you're good.
+如果二者不同（大概率是的），那么您是无公网IP的用户，您可以尝试去找运营商去要（移动大概率是要不到的），否则您是无法成功搭建服务器的。
 
-If you get 2 entries or more you're likely behind a [CGNAT](https://en.wikipedia.org/wiki/Carrier-grade\_NAT). Your only options in this case are either to ask your ISP to give you a public IP address or check whether at least your IPv6 address is public.
+## 端口转发
 
-## Port forwarding
+通过网页控制界面访问您的路由器并转到端口转发子菜单中
 
-Access your router via it's web interface and port forward
+* `37015` (UDP) 用于处理游戏逻辑
+* `8081` (TCP) 用于与主服务器验证以在主服务器中显示您的服务器
 
-* `37015` (UDP) for game logic
-* `8081` (TCP) for Northstar auth so your server shows up in server browser
+本地IP地址为您跑着服务器的那台pc的IP地址.
 
-to your PC that you're running Northstar on.
+## 防火墙
 
-## Firewall
+您需要在防火墙中允许 `NorthstarLauncher.exe` 连接到互联网. 在默认情况下，系统应该会在您第一次运行时弹出窗口，记得允许.
 
-You need to allow the `NorthstarLauncher.exe` in the firewall so that it can connect to the internet. By default, when you launch the server, it should pop up the Windows security alert and let you decide if the application able to connect to the network.
+如果您不小心点了拒绝（取消）按钮，那么手动设置的过程如下.
 
-If you accidentally click the deny button, then follow the step to allow it.
+* 打开 `Windows Defender 防火墙`
+* 选择 `允许应用或功能通过 Windows Defender 防火墙`
+* 点击允许其他应用
+* 点击浏览
+* 定位到 NorthstarLauncher.exe 选择它
+* 单击添加
 
-* Open windows firewall
-* Select "Allow an app or feature through Windows Defender Firewall
-* Click allow other applications
-* Click browse
-* Locate the NorthstarLauncher.exe and select it
-* Click add
+## 最终检查
 
-## Final checks
+如果您想要检查设置是否正确，随便开启一个 Notrhstar 的服务器. 其他的 Northstar 用户应该可以在服务器浏览器中发现并加入您的服务器.\
+您也可以使用网页端的 [服务器浏览器](https://www.wolf109909.top/tf2/) 去查找您的服务器.
 
-To check whether you set everything up correctly, start the game via Northstar and go into a private match. Another Northstar user should now be able to see your server on the server browser and join it.\
-You can also use a web based server browser like the one made by [Taskinoz](https://taskinoz.com/northstar/) or [cpdt](https://cpdt.dev/northstar/) to see if your server shows up in there.
-
-You can also use a third-party site like [this one](https://www.ipfingerprints.com/portscan.php) to see whether you set up the TCP port forwarding correctly for the authentication port (usually `8081`) by performing a scan while your Northstar server is running.
+您还可以使用 [第三方网站](https://www.ipfingerprints.com/portscan.php) 来确认您的TCP端口 (通常为 `8081`) 是否正常 来确认您的服务器是否已经启动.
 
 ![Example check](https://raw.githubusercontent.com/R2Northstar/NorthstarWiki/main/docs/images/portforwarding-testing.png)
 
 ![Working portforwarding for the TCP port](https://raw.githubusercontent.com/R2Northstar/NorthstarWiki/main/docs/images/portforwarding-working.png)
 
-Testing port forwarding like this only works for the TCP port due to the way UDP and Northstar work.
+这样的测试只适用于 TCP 端口 因为 UDP 与 Northstar 的工作方式与之不同.
 
-Note that by default your server is called `Unnamed Northstar Server`. You can change this name as described in the next page.
+注意在默认状态下，您的服务器名字为 `Unnamed Northstar Server`. 请注意去更改他.
