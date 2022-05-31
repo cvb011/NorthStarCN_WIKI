@@ -2,75 +2,71 @@
 
 `[error] Failed reading masterserver authentification response: encountered parse error 'The document is empty.'`
 
-Masterserver needs to request your gameserver for it to be authentified and registered.
-This error means that masterserver can't access your server's tcp port.
+主服务器需要与您的专有服务器进行验证信息的交换以将您的服务器信息添加至服务器列表中，该错误说明主服务器无法与您的专有服务器的 ` TCP ` 端口进行连接.
 
-Multiple problems can cause this error, but you can narrow it down by checking if your server is reachable from the outside.
+造成此错误的可能性有很多，不过您可以从外部网络验证服务器的可达性来缩小排障范围.
 
-## Check if server is reachable
+## 检查服务器是否可达
 
-You can check if the server is reachable using your internet browser.
+您可以使用浏览器确认您的服务器是否可达.
 
-example : `http://{server_ip}:{server_tcp_port}/verify` should answer you `I am a northstar server!`
+example : `http://{server_ip}:{server_tcp_port}/verify` 将会显示以下文本 `I am a northstar server!`
 
-Your server **must** be running while you check if the server is reachable.
+在检查时您的服务器 **必须** 正在运行.
 
-## If server is reachable using external IP
+## 如果在使用外部IP的情况下服务器可达
 
-### Your GameServer is out of date
+### 您的游戏版本已过时
 
-Check that your server is running on the latest Northstar release as it can sometimes include breaking changes.
+请确保您的服务端为最新版本.
 
-### MasterServer is down
+### MasterServer 下线
 
-Check Northstar's Discord for annoucements.
+请在各分支的公告页面确认主服务器状态.
 
-[https://northstar.tf](https://northstar.tf) giving you a HTTP 523 error means that the masterserver is offline.
+### 端口错误
 
-### Ports are not the same
+您的服务端应该被配置为监听一个特定的端口.
 
-Your gameserver is configured to listen to a given TCP port.
+Masterserver 需要与这个 TCP 端口进行通讯.
 
-Masterserver needs to be able to contact your gameserver though that same port.
+### 其他服务占用了此端口
 
-### Another Northstar Server is using the port
+关闭其他服务器以缩小问题范围
 
-Shutdown every other server to narrow down the problem
+这通常没有帮助，但可以避免检查错误的服务器。
 
-This won't generally help but will allow you to avoid checking for the wrong server.
+## 如公网无法访问服务器
 
-## If server is not reachable using external IP
+检查您的服务器是否可以在内网访问 (通常为 `192.168.x.x`)
 
-Check if your server is reachable from your internal network's IP (often starts with `192.168.x.x`)
+### 防火墙阻止了tcp连接
+在某些情况下，您的防火墙或者反病毒软件可能会阻止北极星的连接.
+如遇到这种情况，我们建议手动添加放行规则.
+我们 ***不推荐*** 通过禁用防火墙来解决此问题.
 
-### Firewall is blocking tcp ports
+## 如公网无法访问服务器但内网可以
 
-In some cases your Firewall or antivirus can prevent your ports to be exposed to your local network.
-To fix this issue, make a rule to allow your server to listen on your network.
-Disabling the firewall and antivirus can also work, even if it's not reccomended.
+### 路由器怕配置错误
 
-## If server is not reachable using external IP but reachable using internal IP
-
-### Router configuration is incorrect
-
-If your port can be accessed from your local IP but not from your public IP, then it's very likely that your NAT rules aren't properly configured.
+如公网无法访问服务器但内网可以，那么很大的可能是你的路由器 NAT表 (端口映射/DMZ) 没有正确配置.
 
 ### CGNAT
 
-See [CGNAT](https://r2northstar.gitbook.io/r2northstar-wiki/hosting-a-server-with-northstar/prerequisites#cgnat)
+参考 [CGNAT](https://r2northstar.gitbook.io/r2northstar-wiki/hosting-a-server-with-northstar/prerequisites#cgnat)
 
-## If server is not reachable using external IP nor using internal IP
+## 如果服务器在公 / 内 汪均无法连接
 
-Try checking your loopback network interface `http://127.0.0.1:{server_tcp_port}/verify`
+请检查本地回环链路 `http://127.0.0.1:{server_tcp_port}/verify`
 
-### Another program is using the port
+### 其他程序占用了此端口
 
-Sometimes another program listens to the same tcp port as Northstar.
+其他程序监听了和北极星服务器相同的 tcp 端口.
 
-You can check if that's the case by running `netstat -a -b` using CMD as admin
+您可以使用 `netstat -a -b` 来确定是什么程序
 
-As two programs cannot listen to the same port and IP at the same time, changing the TCP listen port can sometimes solve the problem.
+更改 TCP 监听端口通常能解决此问题.
 
-### Server is using the wrong port
+### 服务器使用了错误的端口
 
-You can use `netstat -a -b` using CMD as admin to check which process listens on which port
+你可以使用 `netstat -a -b` 命令来确认服务器所使用的端口

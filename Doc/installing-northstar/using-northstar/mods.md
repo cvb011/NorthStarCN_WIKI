@@ -12,7 +12,7 @@
 
 ## 社区 mods
 
-截至目前，北极星社区中诞生了形形色色的Mod，你可以在 [Northstar Discord](https://northstar.tf/discord)，[Northstar CN 开黑啦]().
+截至目前，北极星社区中诞生了形形色色的Mod，你可以在 [Northstar Discord](https://northstar.tf/discord)，[Northstar CN 开黑啦](https://kaihei.co/wsZVnX).
 其可在下列板块中找到:
 
 Discord：

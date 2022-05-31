@@ -1,6 +1,9 @@
+# 故障排除
+
+相关内容请参考 [这篇](https://zh.moegirl.org.cn/_?curid=510975) 文章，此处不再重复发明轮子了
+
 <!--
-因为开黑啦有类似教程，此处翻译为低优先级
--->
+我摆了，这地方实在不想搞了，我直接贴咳嗽狼写的百科链接了
 
 # Troubleshooting
 
@@ -187,3 +190,5 @@ If message contains: `AUDCLNT_E_DEVICE_IN_USE`
 4. Restart your computer.
 
 This issue could also be caused if you use some sort of audio wrapper to control volume and stuff like Voicemeter Banana. The above fix was tested with Voicemeter Banana.
+
+-->
